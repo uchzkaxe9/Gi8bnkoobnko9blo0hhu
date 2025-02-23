@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bots Cloud - Python Bot Hosting</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 123, 255, 0.8), 0 0 30px rgba(0, 123, 255, 0.6);
+            }
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #00b4ff;
+        }
+
+        input[type="file"], input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"] {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(0, 123, 255, 0.3);
+            color: #fff;
+        }
+
+        input[type="file"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(45deg, #007BFF, #00b4ff);
+            color: white;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(45deg, #0056b3, #0088ff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .notice {
+            text-align: center;
+            margin-top: 20px;
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        /* Success Message Styling */
+        #success-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .success {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff0000;
+            border: 2px solid #ff0000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bots Cloud ✨</h1>
+        <h3 style="color: #00b4ff;">Python Bot Hosting Platform</h3>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="input-group">
+                <label>Bot Code (.py)</label>
+                <input type="file" name="bot_file" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Requirements File (optional)</label>
+                <input type="file" name="requirements_file">
+            </div>
+            
+            <input type="submit" value="Launch My Bot 🚀">
+        </form>
+
+        {% if message %}
+        <div id="success-message" class="{{ 'success' if 'Successfully' in message else 'error' }}">
+            {{ message }}
+        </div>
+        <script>
+            document.getElementById("success-message").style.display = "block";
+        </script>
+        {% endif %}
+
+        <div class="notice">
+            Supports Python files | Maximum file size: 50MB
+        </div>
+    </div>
+</body>
+  </html>
